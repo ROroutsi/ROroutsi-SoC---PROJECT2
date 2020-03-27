@@ -1,5 +1,7 @@
 # SoC - PROJECT2
 
+Second bootcamp project. Based on Django/SQLite.
+
 Blog and users system.
 
 ## Process
