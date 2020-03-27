@@ -1,0 +1,53 @@
+{% extends "blogs/index.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+        <article class="media content-section">
+          <div class="media-body">
+            <h2 align="center"><a class="article-title">{{ instance.blogTitle }}</a></h2>
+            <div class="article-metadata">
+              <small class="text-muted">{{ instance.blogDate }}</small>
+            </div>
+            <p class="article-content">{{ instance.blogContent }}</p>
+            {{totalLikes}} Like{{totalLikes|pluralize}}
+            <form action="{% url 'like' %}" method="POST">
+            {% csrf_token %}
+            {% if is_liked %}
+            <button class="btn btn-danger" type="submit" value="{{instance.id}}" name="blog_id" >Dislike</button>
+            {% else %}
+            <button class="btn btn-info" type="submit" value="{{instance.id}}" name="blog_id" >Like</button>
+            {% endif %} 
+        </form>
+          </div>
+        </article>
+        <hr>
+        <h4 align="center"> Comments</h4>
+        <hr>
+		{% for comment in comments %}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <small class="text-muted">{{ comment.commentDate }}</small>
+                </div>
+                <h4><a class="article-title">{{ comment.commentAuthor }}</a></h4>
+                <p class="article-content" > {{ comment.commentContent }}</p> 
+            </div>
+        </article>
+		{% empty %}
+            <div class ="content-section">
+			 <h5>No comments yet.</h5>
+            </div>
+        {% endfor %}
+        <hr>    
+        <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+               <h5><legend class="border-bottom mb-4">Add your comment</legend></h5>
+                {{ commentform|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Submit</button>
+            </div>
+        </form>
+        </div>
+ {% endblock content %}

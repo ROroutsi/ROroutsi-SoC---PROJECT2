@@ -1,0 +1,15 @@
+{% extends "blogs/index.html" %}
+{% block content %}
+    {% for blog in blogs %}
+        <article class="media content-section">
+          <div class="media-body">
+            <h2 align="center"><a class="article-title">{{ blog.blogTitle }}</a></h2>
+            <div class="article-metadata">
+              <small class="text-muted">{{ blog.blogDate }}</small>
+            </div>
+            <p class="article-content">{{ blog.blogContent|truncatechars:300 }}</p>
+            <a href="{% url 'slug' blog.id blog.blogSlug %}" class="btn btn-outline-primary">Read More &rarr;</a>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
