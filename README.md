@@ -8,4 +8,4 @@ Hosted at https://roroutsi.pythonanywhere.com/
 
 ## Process
 
-Create a profile. You can view blog posts, as well as like and comment them.Only the admin can add and delete blogs.
+Create a profile. You can view blog posts, as well as like and comment them. Only the admin can add and delete blogs.
